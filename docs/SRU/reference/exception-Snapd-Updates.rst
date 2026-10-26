@@ -113,7 +113,9 @@ Exceptions
 
 SnapD falls into the following overlapping :ref:`special types of SRU
 <reference-special-types-of-sru>`. All SnapD releases, regardless of the exact
-category, are required to comply with the same thorough QA process.
+category, are required to comply with the same thorough QA process, described
+in the Quality Assurance section of `SnapD updates in Ubuntu
+<https://documentation.ubuntu.com/canonical-snapd-lore/processes/snapd-updates-in-ubuntu/>`_.
 
 Package-specific non-standard process
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
