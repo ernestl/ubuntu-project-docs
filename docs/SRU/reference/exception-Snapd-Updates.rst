@@ -89,23 +89,8 @@ versions. See :ref:`design <ref_design>`, :ref:`development
 to minimize the risks associated with maintaining this level of
 "up-to-dateness".
 
-Overview of SnapD usage across Ubuntu variants
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-There are different Ubuntu OS variants that depend on SnapD to different degrees.
-
-These variants include:
-
-- **Classic:** Desktop, Server, Cloud & Ubuntu WSL.
-- **Hybrid Classic:** Similar to Classic systems, but use Kernel snap and therefore
-  requires SnapD. Available from 26.04.
-- **Ubuntu Core:** A strictly confined, immutable Ubuntu variant optimized for
-  edge and IoT devices. It uses only snaps and therefore requires SnapD.
-
-Variants and composition of installers and installed images may change in the future.
-
-Classic systems
-~~~~~~~~~~~~~~~
+SnapD behavior on Classic Ubuntu
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - SnapD is used during both installation and normal system operation.
 - Installer LiveCD images are seeded with both SnapD deb and snap packages and
@@ -121,26 +106,8 @@ Classic systems
 - The SnapD deb package installs the systemd units and
   service integration that bootstrap SnapD. The SnapD snap also contains
   equivalent service integration, but this is only used on Ubuntu Core systems.
-- SRU release targets all `Ubuntu Releases
-  <https://ubuntu.com/about/release-cycle>`_ in Standard Support (not ESM or
-  Legacy Support).
-
-Hybrid Classic systems
-~~~~~~~~~~~~~~~~~~~~~~
-
-Hybrid Classic systems behave the same as Classic systems except for the following:
-
-- SnapD is more deeply integrated into Hybrid Classic systems that use
-  TPM-backed Full Disk Encryption (FDE).
-- Currently LiveCD images and installs are seeded with both SnapD deb and snap
-  packages.
-
-Ubuntu Core systems
-~~~~~~~~~~~~~~~~~~~
-
-- Ubuntu Core images are seeded with the snap package.
-- Updates are released as a snap package, therefore the SRU process is not
-  relevant to this product.
+- Classic Ubuntu with TPM-backed full disk encryption, available from 26.04,
+  requires a kernel snap, a base snap, and SnapD for correct operation.
 
 Exceptions
 ----------
