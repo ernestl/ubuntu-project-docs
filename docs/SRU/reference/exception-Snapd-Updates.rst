@@ -122,7 +122,16 @@ The following exceptions to :ref:`what is acceptable to SRU
 <reference-what-is-acceptable-to-sru>` apply to every SnapD upload:
 
 - The SRU will be done with a single process bug, instead of individual bug
-  reports for individual bug fixes.
+  reports for individual bug fixes. This covers all supported interim releases
+  in standard support and all LTS releases in standard support. Releases for
+  the different targets must share the same source tree, with the only
+  difference being the additional "backport" entry at the top of
+  debian/changelog. See
+  `SnapD versioning <https://github.com/cpaelzer/ubuntu-maintainers-handbook/blob/d380ce51da109f8e27db5c6606f43f253b3bcd92/VersionStrings.md#version-almost-native-packages>`_.
+- Individual bugs should be referenced in the changelog, and each bug needs to
+  be independently verified and commented on for the SRU to be considered
+  complete. Refer to the :ref:`SRU template <ref_sru_template>` for details
+  about the required documentation.
 - Sponsors, the Ubuntu Release Team, and the SRU Team are not required to review
   all source changes, only those related to packaging and systemd/service
   integration. These changes must be clearly identified in the SRU bug.
@@ -133,6 +142,9 @@ The following exceptions to :ref:`what is acceptable to SRU
   of this responsibility, the SnapD team may determine the optimal release order
   of SnapD deb and snap updates for each release, since this can affect which
   SnapD version is executed on a system.
+- When the SRU team accepts an upload into *-proposed*, it applies
+  *block-proposed-<series>* so the upload is not promoted to *-updates* on its
+  own. The SRU team removes the block when the SnapD team is ready to release.
 
 .. _ref_revert:
 
@@ -192,17 +204,6 @@ Non-standard package behavior
   has no effect on the running SnapD. Reverting or downgrading the deb leaves
   that re-executed snap in place.
 
-Release Targets
----------------
-
-- All supported interim releases in standard support.
-- All LTS releases in standard support.
-
-Releases for the different targets must share the same source tree, with the
-only difference being the additional "backport" entry at the top of
-debian/changelog. See
-`SnapD versioning <https://github.com/cpaelzer/ubuntu-maintainers-handbook/blob/d380ce51da109f8e27db5c6606f43f253b3bcd92/VersionStrings.md#version-almost-native-packages>`_.
-
 Key Integrations and Interactions
 ---------------------------------
 
@@ -227,15 +228,6 @@ Key Integrations and Interactions
 Refer to `SnapD Key Integrations/Interactions on Classic Systems
 <https://docs.google.com/document/d/1hNrDXVLJHD1igUSb3UNkhpVA3nx88cQzfIzs4LipwaY/edit?usp=sharing>`_
 for more details.
-
-Upload Process
---------------
-
-The SRU should be done with a single process bug, instead of individual bug
-reports for individual bug fixes. Individual bugs should be referenced in the
-changelog, and each bug needs to be independently verified and commented on for
-the SRU to be considered complete. Refer to the :ref:`SRU template
-<ref_sru_template>` for details about the required documentation.
 
 Workflow and responsibilities
 -----------------------------
