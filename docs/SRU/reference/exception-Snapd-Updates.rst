@@ -112,40 +112,13 @@ SnapD behavior on Classic Ubuntu
 Exceptions
 ----------
 
-Categorization
-^^^^^^^^^^^^^^
-
-SnapD falls into the following overlapping :ref:`special types of SRU
-<reference-special-types-of-sru>`:
-
-- **Package-specific non-standard process:**
-
-  This process deviates from the standard guidelines to accommodate its goal to
-  always keep systems up-to-date with the latest bug fixes and features.
-
-- **New bugfix-only upstream release:**
-
-  Updates to SnapD may involve minor upstream releases (dot releases) that focus
-  exclusively on fixing bugs.
-
-- **New upstream release that adds features without breaking existing
-  behaviour:**
-
-  SnapD updates may also include upstream releases that introduce new features.
-  These major updates are :ref:`carefully designed <ref_design>` to ensure
-  backward compatibility. It is possible to gate new features using
-  :ref:`experimental flags <ref_experimental>` that require user opt-in to be
-  enabled. This is used when deemed necessary by the SnapD architect.
-
-- **Creator support:**
-
-  `Interfaces <https://snapcraft.io/docs/interfaces>`_ enable controlled access to
-  a specific set of system resources and other snaps. It regularly happens that
-  new interfaces or extensions are necessary to empower creators with the system
-  resources they need to develop and enhance their applications.
-
-All SnapD releases, regardless of the exact category, are required to comply
-with the same thorough QA process.
+SnapD falls under these overlapping :ref:`special types of SRU
+<reference-special-types-of-sru>`: a package-specific non-standard process,
+bugfix-only upstream releases, and upstream releases that add features without
+breaking existing behaviour. New interfaces or extensions may be included so
+that creators can use system resources that were previously closed. All SnapD
+releases, regardless of the exact category, are required to comply with the
+same thorough QA process.
 
 Deviations requiring sign-off
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
