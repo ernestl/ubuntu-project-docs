@@ -84,8 +84,7 @@ The SnapD value proposition is to allow installing robust software that can move
 at a different pace than distributions, in a rolling release model. In order to
 fulfill this, it needs to provide a security-maintained, consistent and
 up-to-date runtime environment for them across distributions and distribution
-versions. See :ref:`design <ref_design>`, :ref:`development
-<ref_development>` and :ref:`release <ref_release>` processes have been designed
+versions. See design, development and release processes have been designed
 to minimize the risks associated with maintaining this level of
 "up-to-dateness".
 
@@ -134,6 +133,9 @@ The following exceptions to :ref:`what is acceptable to SRU
   of this responsibility, the SnapD team may determine the optimal release order
   of SnapD deb and snap updates for each release, since this can affect which
   SnapD version is executed on a system.
+
+.. _ref_revert:
+
 - If a regression affecting Classic systems occurs, the SRU team may require a
   high-priority fix from the SnapD team. The SnapD team will select the most
   appropriate mitigation, such as a snapd deb-only update, a store-based snap
@@ -153,9 +155,9 @@ Regular minor releases, as required to fix bugs.
 New upstream release that adds features without breaking existing behaviour
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-These updates are :ref:`designed <ref_design>` so existing behaviour does not
+These updates are designed so existing behaviour does not
 break. A feature that is not ready to be on by default stays behind an
-:ref:`experimental flag <ref_experimental>` until the SnapD architect enables
+experimental flag until the SnapD architect enables
 it.
 
 - Regular major releases, typically every eight weeks, are delivered as a single
@@ -189,123 +191,6 @@ Non-standard package behavior
 - Because the deb re-executes into the snap, a later change to the deb version
   has no effect on the running SnapD. Reverting or downgrading the deb leaves
   that re-executed snap in place.
-
-Quality Assurance
------------------
-
-.. _ref_design:
-
-- **Design:**
-
-  - Complicated or risky changes/features requires a specification for approval
-    by at least the product architect.
-  - Compatibility mindset - any SnapD version should run on any classic Ubuntu
-    release and be able to:
-
-    - Upgrade to any new version without breaking existing behavior.
-    - Downgrade to any version without breaking behavior that also exists on the earlier
-      version.
-
-.. _ref_development:
-
-- **Development:**
-
-  - Each change must follow `conduct
-    <https://github.com/canonical/snapd/blob/master/CODE_OF_CONDUCT.md>`_,
-    `contribution <https://github.com/canonical/snapd/blob/master/CONTRIBUTING.md>`_
-    and `coding guidelines <https://github.com/canonical/snapd/blob/master/CODING.md>`_
-  - Each change must clearly indicate which support tickets it addresses. This
-    includes Salesforce Support, Launchpad Bugs and Snapcraft Forum reports.
-  - Each change must be approved by at least 2 members of the
-    `SnapD team <https://github.com/orgs/canonical/teams/snapd>`_.
-  - Each change must be fully tested at unit level.
-  - Each feature must have up-to-date integration test.
-  - Each change must pass required static analysis checks.
-  - Each change must pass the required unit test for amd64 and arm64 on all
-    supported classic Ubuntu releases for all corresponding versions of the Go
-    toolchain.
-  - Each change must pass required integration tests on all supported classic
-    Ubuntu and Ubuntu Core releases. This includes:
-
-    - Re-execution of SnapD deb to SnapD snap.
-    - Upgrade/downgrade from/to previous to candidate version.
-
-  - Tests that cannot be automated are documented and manually executed when
-    there are changes in the code that can affect the feature.
-
-.. _ref_experimental:
-
-- **Experimental flags:**
-
-  Features that are actively under development and carry uncertainty in terms
-  of direction or risk must leverage the experimental flag system. This system
-  ensures users must explicitly opt-in to activate and test such functionality. The
-  SnapD architect is responsible for determining which features should be gated by
-  experimental flags and for defining the duration of their experimental status.
-  Existing experimental features must be  documented.
-
-.. _ref_release:
-
-- **Release:**
-
-  Refer to the `SnapD release testing diagram <https://drive.google.com/file/d/1Rbs2l0YBaYQSxS4NgvzsoY8fL4gjBnu_/view?usp=sharing>`_
-  for the full validation flow that also covers the SnapD snap. This section focuses
-  on the SnapD deb part. The diagram serves as a guideline and may change as required.
-
-  - **Release notes:**
-
-    `Release notes <https://docs.google.com/document/d/1do2TFwRIAzuOjLmteVuD0CRoJNO5vVcdUIwTHo4bYO4/edit?usp=sharing>`_
-    comments must represent  all PRs, excluding test and non-functional changes, and
-    reference all the relevant Launchpad Bugs.
-
-  .. _ref-release-testing:
-
-  - **Release testing:**
-
-    The release PR must pass required  static checks, unit tests
-    (amd64, arm64) and integration tests (amd64, arm64) on all supported classic
-    Ubuntu releases.
-
-  - **QA testing on SnapD PPA:**
-
-    SnapD debs must be staged  to *ppa:snappy-dev/image* and pass required static
-    checks, unit tests (amd64, arm64) and integration tests (amd64, arm64) on all
-    supported classic Ubuntu releases. Apart from QA spread based unit tests, unit
-    tests will also be run at package build time, thereby covering all architectures.
-
-  - **QA testing on `-proposed`:**
-
-    SnapD debs must be staged  to *-proposed* and must pass required static checks,
-    unit tests (amd64, arm64) and integration tests (amd64, arm64) similar to
-    development on all supported classic Ubuntu releases. Apart from QA spread based
-    unit tests, unit tests will also be run at package build time, thereby covering
-    all architectures.
-
-  - **Autopkgtest on `-proposed`:**
-
-    SnapD debs must undergo  autopkgtest testing (all architectures) for all supported
-    classic Ubuntu releases.
-
-  - **Launchpad Bug testing on `-proposed`:**
-
-    Each LP bug, relevant  to Ubuntu (excludes e.g. other distros and snaps), should
-    implement the :ref:`SRU Bug template <reference-sru-bug-template>`, most importantly
-    the *Impact* and *Test  Plan* and the rest as applicable. Each LP bug must be
-    independently verified on all the targeted Ubuntu versions.
-
-  - **SnapD snap testing:**
-
-    The tests required as part of  the SnapD snap release validation must pass, with
-    the exception of failures not applicable to the deb packages.
-
-.. _ref_revert:
-
-- **Revert:**
-
-If a serious regression impacting Classic Ubuntu is reported or discovered, and
-confirmed by a member of the SnapD team, the team is responsible for determining
-the most appropriate mitigation, which may include a SnapD deb-only update, a
-store-based snap revert, or a snap update.
 
 Release Targets
 ---------------
@@ -382,7 +267,7 @@ A review should cover at least the following:
   the *Impact* and *Test Plan* and the rest as applicable. Each LP bug must be
   independently verified in *-proposed*.
 - Review packaging and systemd/service integration changes.
-- Review results of all :ref:`required release testing <ref-release-testing>`.
+- Review results of all required release testing.
 - For all source packages for the different target releases:
 
   - Ensure builds for all architectures succeeded.
