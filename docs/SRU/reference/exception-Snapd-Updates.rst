@@ -229,19 +229,6 @@ Refer to `SnapD Key Integrations/Interactions on Classic Systems
 <https://docs.google.com/document/d/1hNrDXVLJHD1igUSb3UNkhpVA3nx88cQzfIzs4LipwaY/edit?usp=sharing>`_
 for more details.
 
-Workflow and responsibilities
------------------------------
-
-**Interim and LTS releases:**
-
-- SRU Team reviews *-unapproved*.
-- SRU Team promotes to *-proposed* and applies blocks *block-proposed-<series>*.
-- SRU Team reviews *-proposed*.
-- SnapD Team provides test results for *-proposed*.
-- SnapD Team address autopkgtest failures if any (excuses) or re-trigger tests as
-  required.
-- SRU Team reviews test results and removes *block-proposed-<series>*.
-
 Review
 ------
 
