@@ -244,9 +244,10 @@ match, and the changelogs differ only by the backport entry.
 
 Each Launchpad bug that is relevant to Ubuntu uses the :ref:`SRU bug template
 <reference-sru-bug-template>` and is verified in *-proposed*. The SRU team
-checks that the required release testing passed. On acceptance into
-*-proposed*, the SRU team applies *block-proposed-<series>* and removes it
-when the SnapD team is ready to release.
+checks that the release testing listed in the :ref:`SRU template
+<ref_sru_template>` passed. On acceptance into *-proposed*, the SRU team
+applies *block-proposed-<series>* and removes it when the SnapD team is ready
+to release.
 
 .. _ref_sru_template:
 
