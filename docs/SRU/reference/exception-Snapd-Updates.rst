@@ -234,27 +234,19 @@ for more details.
 Review
 ------
 
-A review should cover at least the following:
+The SRU team does not review the upstream changes. It confirms that the upload
+matches the release tag except for the additional Go and C vendoring, and it
+reviews the packaging and systemd/service integration changes identified in the
+SRU bug.
 
-- Review that required documentation has been provided as per the SRU template.
-- Compare uploaded code to that of the respective release tag to confirm the
-  only significant difference is the additional Go and C vendoring code in the
-  package.
-- Review the `release notes
-  <https://docs.google.com/document/d/1do2TFwRIAzuOjLmteVuD0CRoJNO5vVcdUIwTHo4bYO4/edit?usp=sharing>`_.
-- Review the related Launchpad bugs indicated in the release notes. Each LP bug,
-  relevant to Ubuntu (excludes e.g. other distros and snaps), should implement
-  the :ref:`SRU Bug template <reference-sru-bug-template>` , most importantly
-  the *Impact* and *Test Plan* and the rest as applicable. Each LP bug must be
-  independently verified in *-proposed*.
-- Review packaging and systemd/service integration changes.
-- Review results of all required release testing.
-- For all source packages for the different target releases:
+Across the targeted releases, the source tarballs and vendored dependencies
+match, and the changelogs differ only by the backport entry.
 
-  - Ensure builds for all architectures succeeded.
-  - Source tarballs match.
-  - Vendored dependencies match.
-  - Changelogs for all targeted releases match the release notes and each other.
+Each Launchpad bug that is relevant to Ubuntu uses the :ref:`SRU bug template
+<reference-sru-bug-template>` and is verified in *-proposed*. The SRU team
+checks that the required release testing passed. On acceptance into
+*-proposed*, the SRU team applies *block-proposed-<series>* and removes it
+when the SnapD team is ready to release.
 
 .. _ref_sru_template:
 
