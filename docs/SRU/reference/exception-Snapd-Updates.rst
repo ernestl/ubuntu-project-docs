@@ -9,7 +9,7 @@ Introduction
 ------------
 
 This document explains how SnapD updates deviate from the standard SRU policy,
-outlining the background, deviations, and the responsibilities of the SnapD,
+outlining the background, exceptions, and the responsibilities of the SnapD,
 sponsor, and SRU teams in managing quality and risk.
 
 Summary
@@ -19,7 +19,7 @@ SnapD, Ubuntu’s service for delivering and updating snaps, is maintained
 through a tailored SRU process that reflects its unique release and update
 requirements.
 
-Key deviations from the standard SRU model include:
+Key exceptions to the standard SRU model include:
 
 - **Rolling release model:**
 
@@ -52,7 +52,7 @@ Key deviations from the standard SRU model include:
   backward compatibility must be reviewed by the Technical Board before they are
   introduced.
 
-These deviations are necessary to keep Ubuntu systems secure, up-to-date, and
+These exceptions are necessary to keep Ubuntu systems secure, up-to-date, and
 consistent across distributions, while enabling developers to use new system
 capabilities without delay.
 
@@ -112,32 +112,16 @@ SnapD behavior on Classic Ubuntu
 Exceptions
 ----------
 
-SnapD falls under these overlapping :ref:`special types of SRU
-<reference-special-types-of-sru>`: a package-specific non-standard process,
-bugfix-only upstream releases, and upstream releases that add features without
-breaking existing behaviour. New interfaces or extensions may be included so
-that creators can use system resources that were previously closed. All SnapD
-releases, regardless of the exact category, are required to comply with the
-same thorough QA process.
+SnapD falls into the following overlapping :ref:`special types of SRU
+<reference-special-types-of-sru>`. All SnapD releases, regardless of the exact
+category, are required to comply with the same thorough QA process.
 
-Deviations requiring sign-off
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Package-specific non-standard process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SnapD requires the following deviations from :ref:`what is acceptable to SRU
-<reference-what-is-acceptable-to-sru>` to support its goal of always keeping
-systems up-to-date and enable creators to access not-yet-supported system
-resources.
+The following exceptions to :ref:`what is acceptable to SRU
+<reference-what-is-acceptable-to-sru>` apply to every SnapD upload:
 
-Process
-~~~~~~~
-
-- Regular major releases, typically every eight weeks, are delivered as a single
-  SRU bug. Each SRU aligns with a full upstream release - often encompassing 100+
-  pull requests, approximately half of which are dedicated to test
-  additions and maintenance - and introduces complete or partial features
-  alongside bug fixes and interface extensions.
-- Regular minor releases, as required to fix bugs and low risk interface
-  extensions.
 - The SRU will be done with a single process bug, instead of individual bug
   reports for individual bug fixes.
 - Sponsors, the Ubuntu Release Team, and the SRU Team are not required to review
@@ -161,45 +145,50 @@ Process
   behaviour, or changes that impact backward compatibility, and must bring such
   changes to the Technical Board for review before they are introduced.
 
-Package behavior
-~~~~~~~~~~~~~~~~
+New bugfix-only upstream release
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When the first snap is installed through the snapd deb, the snapd snap itself is
-also installed, and the deb then re-executes into it. The snapd snap is kept up
-to date through auto-refresh, ensuring that snapd always runs with the latest
-features and fixes, and maintains consistency across Ubuntu releases regardless
-of the host distribution’s update cadence.
+Regular minor releases, as required to fix bugs.
 
-- **Automatic installation of SnapD snap once other snaps are installed:**
+New upstream release that adds features without breaking existing behaviour
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  - SnapD deb version >= *2.40* will automatically install the latest stable SnapD
-    snap along with any non-essential (not: core, base, gadget, kernel or snapd)
-    snap that does not itself require the Core snap. This ensures an up-to-date
-    runtime and additionally enables the use of interfaces (`PR-6778
-    <https://github.com/canonical/snapd/pull/6778>`_).
+These updates are :ref:`designed <ref_design>` so existing behaviour does not
+break. A feature that is not ready to be on by default stays behind an
+:ref:`experimental flag <ref_experimental>` until the SnapD architect enables
+it.
 
-  - SnapD deb version >= *2.66.1* will automatically install the latest stable SnapD
-    snap along with any non-essential (not: core, base, gadget, kernel or snapd)
-    snap. This is required to systematically remove the core snap upgrade path
-    (`PR-14173 <https://github.com/canonical/snapd/pull/14173>`_).
+- Regular major releases, typically every eight weeks, are delivered as a single
+  SRU bug. Each SRU aligns with a full upstream release - often encompassing 100+
+  pull requests, approximately half of which are dedicated to test
+  additions and maintenance - and introduces complete or partial features
+  alongside bug fixes and interface extensions.
+- Regular minor releases may include low risk interface extensions that do not
+  expose new hardware.
+
+Hardware enablement
+^^^^^^^^^^^^^^^^^^^
+
+Some new interfaces give snaps access to hardware they could not use before.
+That is :ref:`hardware enablement <reference-criteria-hardware>`: it must not
+affect systems that already work. The same kind of interface change also
+opens access to files, content, and other resources. Those additions are
+unused until a snap is connected to them, so existing behaviour stays as it
+is.
+
+Non-standard package behavior
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _ref_reexecution:
 
-- **Re-execution from SnapD deb to SnapD snap:**
-
-  If the SnapD snap version is greater than or equal to the SnapD deb version,
-  the SnapD deb will re-execute to run the SnapD snap. Note that in the case of
-  the same counterpart versions, where SnapD deb version is *2.66.1+ubuntu24.04*
-  and SnapD snap version is *2.66.1*, re-execution will not happen because the
-  postfix *+ubuntu24.04* makes the deb version the higher version. With no SnapD
-  snap installed and Core snap installed, if the version of SnapD embedded in
-  the Core snap is greater than or equal to the SnapD deb version, the SnapD deb
-  will re-execute to the SnapD embedded in the Core snap.
-
-- **Automatic refresh of SnapD snap:**
-
-  If SnapD snap is installed it will automatically refresh to the latest
-  available version according to the auto-refresh schedule.
+- When the first snap is installed through the snapd deb, the snapd snap itself is
+  also installed, and the deb then re-executes into it. The snapd snap is kept up
+  to date through auto-refresh, ensuring that snapd always runs with the latest
+  features and fixes, and maintains consistency across Ubuntu releases regardless
+  of the host distribution’s update cadence.
+- Because the deb re-executes into the snap, a later change to the deb version
+  has no effect on the running SnapD. Reverting or downgrading the deb leaves
+  that re-executed snap in place.
 
 Quality Assurance
 -----------------
