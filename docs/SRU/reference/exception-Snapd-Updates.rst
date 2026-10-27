@@ -30,9 +30,10 @@ The SnapD value proposition is to allow installing robust software that can move
 at a different pace than distributions, in a rolling release model. In order to
 fulfill this, it needs to provide a security-maintained, consistent and
 up-to-date runtime environment for them across distributions and distribution
-versions. See design, development and release processes have been designed
-to minimize the risks associated with maintaining this level of
-"up-to-dateness".
+versions. The design, development, and release processes limit the risk of
+keeping that runtime up to date. They are described in the Quality Assurance
+section of `SnapD updates in Ubuntu
+<https://documentation.ubuntu.com/canonical-snapd-lore/processes/snapd-updates-in-ubuntu/>`_.
 
 SnapD behavior on Classic Ubuntu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
