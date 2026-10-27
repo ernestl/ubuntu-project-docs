@@ -176,7 +176,7 @@ SRU Template
 Sponsoring Request
 ^^^^^^^^^^^^^^^^^^
 
-This refers to the "single process bug" that links to to one or more Launchpad
+This refers to the "single process bug" that links to one or more Launchpad
 bugs associated with the release.
 
 .. code-block::
@@ -232,7 +232,7 @@ bugs associated with the release.
 Sponsoring Request Final Test Feedback
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following updates from the snapd team is required before considering
+The following updates from the snapd team are required before considering
 releasing to *-updates*:
 
 .. code-block::
@@ -254,8 +254,8 @@ explicitly mentioned with links to:
  - link to the Release PR where it was exercised
  - still include manual verification steps as well
 
-Ubuntu Core only Launchpad bugs does not require Launchpad bug verification.
-Clearly indicate if a Launchpadbug is Ubuntu Core only.
+Ubuntu Core only Launchpad bugs do not require Launchpad bug verification.
+Clearly indicate if a Launchpad bug is Ubuntu Core only.
 
 .. code-block::
 
