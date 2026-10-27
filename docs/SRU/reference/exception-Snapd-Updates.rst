@@ -45,9 +45,9 @@ snapd behaviour on Classic Ubuntu
   installation and normal system operation.
 - Due to re-execution, reverting the deb package alone does not necessarily
   revert the running snapd version if a newer or equal snap revision is still
-  installed. For this reason, snapd reverts may be performed using the
-  store-based snap revert mechanism described :ref:`here <ref_revert>`, rather
-  than through the standard SRU process for deb packages.
+  installed. For this reason, the snapd team chooses the mitigation
+  :ref:`here <ref_revert>`, rather than through the standard SRU process for
+  deb packages.
 - Updates are released as deb and snap packages; the order of release may vary.
 - The snapd deb package installs the systemd units and
   service integration that bootstrap snapd. The snapd snap also contains
