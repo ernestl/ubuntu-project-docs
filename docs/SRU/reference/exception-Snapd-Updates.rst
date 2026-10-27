@@ -150,31 +150,6 @@ Non-standard package behavior
 - Because the deb re-executes into an equal or newer snap, reverting or
   downgrading the deb leaves that snap running.
 
-Key Integrations and Interactions
----------------------------------
-
-- **kernel:** support for apparmor, seccomp, module loader, u-events, fuse
-  module, etc.
-- **systemd:** snap services, cgroups, mounting.
-- **udev, libudev1 :** mediate device access.
-- **dbus-x11, dbus-user-session:** mediate bus access.
-- **policykit-1:** polkit policy.
-- **apparmor:** apparmor profiles.
-- **squashfs-tools:** packing of snaps.
-- **squashfuse, fuse3, libfuse3-3:** to mount squashfs in virtual environments.
-- **mount:** mounting and unmounting.
-- **passwd, libc-bin:** user creation and lookup.
-- **openssh-client:** device key generation.
-- **ca-certificates:** secure communications.
-- **xdg-desktop-portals:** portal support.
-- **prompting-client, desktop-security-center:** apparmor prompting support.
-- **snapd-desktop-integration:** SnapD notifications.
-- **snap-store:** app-center.
-
-Refer to `SnapD Key Integrations/Interactions on Classic Systems
-<https://docs.google.com/document/d/1hNrDXVLJHD1igUSb3UNkhpVA3nx88cQzfIzs4LipwaY/edit?usp=sharing>`_
-for more details.
-
 Review
 ------
 
