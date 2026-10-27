@@ -205,7 +205,8 @@ bugs associated with the release.
  Content overview:
   - [Features]
   - [Bug fixes]
-  - [Creator support changes]
+  - [Hardware enablement]
+  - [Other interface extensions]
   - [Other]
 
  Areas of potential regressions:
