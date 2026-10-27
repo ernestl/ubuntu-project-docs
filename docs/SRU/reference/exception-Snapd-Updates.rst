@@ -147,9 +147,8 @@ Non-standard package behavior
   to date through auto-refresh, ensuring that snapd always runs with the latest
   features and fixes, and maintains consistency across Ubuntu releases regardless
   of the host distribution’s update cadence.
-- Because the deb re-executes into the snap, a later change to the deb version
-  has no effect on the running SnapD. Reverting or downgrading the deb leaves
-  that re-executed snap in place.
+- Because the deb re-executes into an equal or newer snap, reverting or
+  downgrading the deb leaves that snap running.
 
 Key Integrations and Interactions
 ---------------------------------
