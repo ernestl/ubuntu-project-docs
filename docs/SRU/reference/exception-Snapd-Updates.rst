@@ -174,11 +174,9 @@ break. A feature that is not ready to be on by default stays behind an
 experimental flag until the SnapD architect enables
 it.
 
-- Regular major releases, typically every eight weeks, are delivered as a single
-  SRU bug. Each SRU aligns with a full upstream release - often encompassing 100+
-  pull requests, approximately half of which are dedicated to test
-  additions and maintenance - and introduces complete or partial features
-  alongside bug fixes and interface extensions.
+- Regular major releases align with a full upstream release, typically 150-250
+  pull requests, about half of which are test-related, and introduce complete
+  or partial features alongside bug fixes and interface extensions.
 - Regular minor releases may include low risk interface extensions that do not
   expose new hardware.
 
