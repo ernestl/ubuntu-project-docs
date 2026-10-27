@@ -79,8 +79,8 @@ The following exceptions to :ref:`what is acceptable to SRU
   `snapd versioning <https://github.com/cpaelzer/ubuntu-maintainers-handbook/blob/d380ce51da109f8e27db5c6606f43f253b3bcd92/VersionStrings.md#version-almost-native-packages>`_.
 - Individual bugs should be referenced in the changelog, and each bug needs to
   be independently verified and commented on for the SRU to be considered
-  complete. Refer to the :ref:`SRU template <ref_sru_template>` for details
-  about the required documentation.
+  complete. Refer to the :ref:`SRU bug template <reference-sru-bug-template>`
+  for details about the required documentation.
 - Sponsors, the Ubuntu Release Team, and the SRU Team are not required to review
   all source changes, only those related to packaging and systemd/service
   integration. These changes must be clearly identified in the SRU bug.
